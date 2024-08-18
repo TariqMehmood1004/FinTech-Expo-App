@@ -1,9 +1,12 @@
-import { Redirect } from "expo-router";
 import React from "react";
+import SplashScreen from "./SplashScreen";
+
 
 const StartPage = () => {
 
-    return <Redirect href="../Login" />;
+    return (
+        <SplashScreen />
+    );
 }
 
 export default StartPage

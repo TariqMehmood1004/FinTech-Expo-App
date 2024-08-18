@@ -14,8 +14,8 @@ import ScreenWrapper from '@/components/ScreenWrapper';
 const HomePage = () => {
   return (
     <ScreenWrapper backgroundColor={Colors.colors.white}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <AppBar />
+      <AppBar />
+      <SafeAreaView style={{ flex: 1, paddingHorizontal: wp(5) }}>
         <ScrollView
           style={styles.container}
           scrollEnabled={true}
@@ -116,6 +116,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.colors.white,
-    padding: 20,
   },
 });

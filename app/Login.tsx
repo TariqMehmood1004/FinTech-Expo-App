@@ -1,7 +1,7 @@
 import ScreenWrapper from "@/components/ScreenWrapper";
 import TTextInput from "@/components/TextInput";
 import { wp } from "@/helpers/common";
-import { Link, Redirect } from "expo-router";
+import { Link, Redirect, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { View, Text } from "react-native";
@@ -13,6 +13,11 @@ const Login = () => {
     const [password, setPassword] = React.useState('');
 
     const isShowPassword = false;
+    const router = useRouter();
+
+    const handleLogin = () => {
+        router.push('/HomePage');
+    }
 
     return (
         <ScreenWrapper backgroundColor={'white'}>
@@ -44,7 +49,7 @@ const Login = () => {
                     <View style={{ padding: wp(5) }}>
                         <Button
                             title="Login"
-                            onPress={() => console.log('Button pressed')}
+                            onPress={handleLogin}
                             isLoading={false}
                             disabled={false}
                         />

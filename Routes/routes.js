@@ -1,7 +1,7 @@
 
 export const routes = {
-    welcome: '../Screens/Welcome',
-    signup: '../Screens/Signup',
-    home: '../Screens/Homescreen',
-    splashScreen: '../Splashscreen'
+    HomePage: '../(tabs)/HomePage',
+    login: '../Login',
+    splashScreen: '../Splashscreen',
+    index: '../index',
 }

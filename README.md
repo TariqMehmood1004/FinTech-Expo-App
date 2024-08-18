@@ -65,3 +65,34 @@
 #### **Submission**
    - Share the GitHub repository URL.
    - Provide the download link for the APK.
+
+## Generate APK
+  - ``` eas build -p android --profile preview ```
+  - If the `eas.json` is not found, create a new one after the above command. 
+  - ### eas.json (Create a JSON file in the root of the project)
+    - ``` {
+          "build": {
+            "preview": {
+              "android": {
+                "buildType": "apk"
+              }
+            },
+            "preview2": {
+              "android": {
+                "gradleCommand": ":app:assembleRelease"
+              }
+            },
+            "preview3": {
+              "developmentClient": true
+            },
+            "preview4": {
+              "distribution": "internal"
+            },
+            "production": {}
+          }
+        }```
+  
+  
+  - ## Ease Login
+  - Email or username » ```JohnBrrighte@engineer.com``` or ```JohnBrrighte1004```
+  - Password » ```JohnBrrighte1004```
