@@ -1,9 +1,19 @@
-import { Colors } from '@/constants/Colors';
 import React from 'react';
-import {hp, wp} from '@/helpers/common';
 import { Pressable, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { Colors } from '@/constants/Colors';
+import { hp, wp } from '@/helpers/common';
 
-const Button = ({
+interface ButtonProps {
+  title: string;
+  onPress: () => void;
+  style?: object;
+  textStyle?: object;
+  isLoading?: boolean;
+  disabled?: boolean;
+  loadingColor?: string;
+}
+
+const Button: React.FC<ButtonProps> = ({
   title,
   onPress,
   style = {},
@@ -23,7 +33,7 @@ const Button = ({
       disabled={disabled || isLoading}
     >
       {isLoading ? (
-              <ActivityIndicator color={loadingColor} />
+        <ActivityIndicator color={loadingColor} />
       ) : (
         <Text style={[styles.buttonText, textStyle]}>{title}</Text>
       )}
@@ -33,7 +43,7 @@ const Button = ({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.colors.blue,
+    backgroundColor: Colors.colors.blue, // Blue background color
     paddingVertical: hp(2),
     paddingHorizontal: wp(5),
     borderRadius: Colors.radius.sm,
@@ -42,11 +52,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: 'bold',
   },
   disabledButton: {
-    backgroundColor: Colors.colors.blue,
+    backgroundColor: Colors.colors.grey, // Grey background color for disabled state
   },
 });
 
