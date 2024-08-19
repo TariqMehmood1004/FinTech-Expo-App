@@ -33,7 +33,8 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled || isLoading}
     >
       {isLoading ? (
-        <ActivityIndicator color={loadingColor} />
+        <ActivityIndicator size="small" color={loadingColor} />
+
       ) : (
         <Text style={[styles.buttonText, textStyle]}>{title}</Text>
       )}
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   disabledButton: {
-    backgroundColor: Colors.colors.grey, // Grey background color for disabled state
+    backgroundColor: Colors.colors.blue, // Grey background color for disabled state
   },
 });
 

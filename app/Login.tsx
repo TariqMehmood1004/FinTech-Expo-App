@@ -1,23 +1,54 @@
+import React, { useState } from 'react';
+import { View, Text, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { StatusBar } from 'expo-status-bar';
+import { Link, useRouter } from 'expo-router';
 import ScreenWrapper from "@/components/ScreenWrapper";
 import TTextInput from "@/components/TextInput";
-import { wp } from "@/helpers/common";
-import { Link, Redirect, useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { View, Text } from "react-native";
 import Button from "@/components/Button";
-
+import { wp } from "@/helpers/common";
+import { login } from '@/redux/slices/authSlice';
+import api from '@/utils/api';
+import { storeTokenAndUser } from '@/utils/storage';
 
 const Login = () => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const isShowPassword = false;
     const router = useRouter();
+    const dispatch = useDispatch();
 
-    const handleLogin = () => {
-        router.push('/HomePage');
-    }
+    const handleLogin = async () => {
+
+        try {
+            const response = await api.post('/auth/login', { email, password });
+
+            if (response && response.data) {
+                const token = response.data.access_token;
+                const userData = response.data;
+
+                // Save token and user data locally
+                await storeTokenAndUser(token, userData);
+                console.log('Token and user data stored successfully');
+
+                // Dispatch the login action to update the Redux state
+                dispatch(login(token));
+                console.log('Redux state updated with login token');
+
+                // Redirect to the HomePage
+                router.push('/HomePage');
+                console.log('Navigation to HomePage successful');
+            } else {
+                throw new Error('Invalid login response');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            let errorMessage = 'Login Failed. Please check your credentials.';
+            Alert.alert('Login Failed', errorMessage);
+        }
+    };
+
+
 
     return (
         <ScreenWrapper backgroundColor={'white'}>
@@ -62,6 +93,6 @@ const Login = () => {
             </View>
         </ScreenWrapper>
     );
-}
+};
 
-export default Login
+export default Login;

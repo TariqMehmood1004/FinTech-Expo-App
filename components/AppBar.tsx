@@ -3,15 +3,16 @@ import { hp, wp } from '@/helpers/common';
 import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
-import ScreenWrapper from './ScreenWrapper';
+import { useRouter } from 'expo-router';
 
 const AppBar: React.FC = () => {
+    const router = useRouter();
     return (
         <Appbar.Header style={styles.header}>
             <Image source={require('../assets/images/react-logo.png')} style={styles.logo} resizeMode="contain" />
             <Appbar.Content title="" />
             <Appbar.Action icon="bell-outline" onPress={() => { }} />
-            <Appbar.Action icon="cog-outline" onPress={() => { }} />
+            <Appbar.Action icon="cog-outline" onPress={() => router.push('/Settings')} />
         </Appbar.Header>
     );
 };
